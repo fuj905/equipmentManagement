@@ -25,7 +25,7 @@
         <ul class="list-group" style="margin-bottom: 20px;">
             <li v-for="book in bookList" class="list-group-item">
                 <input v-model="book.bookName" :disabled="book.disabled" type="text" class="form-control" placeholder="我的床头书">
-                <button @click="editBook(book)" class="btn btn-primary">{{book.disabled ? "编222辑" : "保存"}}</button>
+                <button @click="editBook(book)" class="btn btn-primary">{{book.disabled ? "编辑" : "保存"}}</button>
                 <button @click="deleteBook(book)" class="btn btn-danger">删除</button>
             </li>
         </ul>
