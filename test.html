@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<style>
+
+</style>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="ui_assets/css/amazeui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/option.css" media="screen" />
+    <link rel="stylesheet" href="ui_assets/switch-master/amazeui.switch.css">
+    <link rel="stylesheet" type="text/css" href="css/map.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/d3-lasso.css" media="screen" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link href="css/index_style.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="jss/d3.js"></script>
+    <script type="text/javascript" src="jss/d3v4.js"></script>
+    <!-- <script type="text/javascript" src="jss/d3.v4.min.js"></script> -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <script type="text/javascript" src="jss/echarts.js"></script>
+    <script type="text/javascript" src="jss/dataTool.js"></script>
+    <script type="text/javascript" src="jss/d3-legend.min.js"></script>
+
+
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+
+</head>
+
+<div id="Container">
+
+
+
+    <div id="Content-Header"></div>
+    <div id="Content-VIEWS">
+
+        <div id="Content-OPTION">
+            <div class="BLOCK-Title">Option</div>
+            <form id="myform" name="myform">
+                <div id="Set_Dataset" class="Option-section" style="height:150px">
+                    <div class="option-section-title"><span class="am-icon-cog title-icon"></span><span>Selection algorithm</span></div>
+
+
+                    <div class="option-select">
+
+                        <input id="switch-sortbytime" type="checkbox" name="algorithm" value='lof' data-am-switch />
+                        <span class="sub-text">LOF</span>
+                    </div>
+                    <div class="option-select">
+
+                        <input id="switch-sortbyfeatures" type="checkbox" name="algorithm" value='iforest' data-am-switch />
+                        <span class="sub-text">Isolation Forest</span>
+                    </div>
+                    <div class="option-select">
+
+                        <input id="switch-sortbytime_heatmap" type="checkbox" name="algorithm" value='knn' data-am-switch />
+                        <span class="sub-text">KNN</span>
+                    </div>
+                </div>
+
+                <div id="Set_UncertaintyView" class="Option-section" style="height:150px">
+                    <div class="option-section-title">
+                        <span class="am-icon-cog title-icon"></span><span>Selection method</span>
+                    </div>
+                    <label class="am-radio sub-text"><input type="radio" name="algorithm_selectType" value="0" checked data-am-ucheck>AND</label>
+                    <label class="am-radio sub-text"><input type="radio" name="algorithm_selectType" value="1" data-am-ucheck>OR</label>
+                    <!-- <label class="am-radio sub-text"><input type="radio" name="radio_Uncertainty" value="2" data-am-ucheck>Local_Moran</label> -->
+                    <div class="am-u-sm-10 am-u-sm-offset-2">
+                        <input type="button" id="ajaxBtn" value="提交" class="am-btn am-btn-default  am-round am-btn-xs sub-submit" />
+                        <!-- <button type="submit" class="am-btn am-btn-default  am-round am-btn-xs sub-submit" id="submit_Uncertainty">submit</button> -->
+                    </div>
+                </div>
+            </form>
+            <form id="myform1" name="myform1">
+                <div id="Set_Dataset" class="Option-section" style="height:1px">
+                    <div class="option-section-title"><span class="am-icon-cog title-icon"></span><span>Selection Interpretable </span></div>
+
+
+                    <div class="option-select">
+                        <!-- <label>id:<input type="text" name="algorithm_selectType"></label> -->
+                        Id: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="radar_id" style="width:130px; color:#000000"> Time: <input type="text" name="radar_month" style="width:130px; color:#000000">
+                    </div>
+                    <div class="am-u-sm-10 am-u-sm-offset-2">
+                        <input type="button" id="ajaxBtn1" value="选择" class="am-btn am-btn-default  am-round am-btn-xs sub-submit" />
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+        <div id="Content-VIEWS-UP">
+
+
+            <div id="Content-Overview">
+                <div class="view-title am-panel am-panel-primary">
+                    <div class="am-panel-hd">GLYPH OverView</div>
+                </div>
+                <div id="left-item1" class="view-vis"></div>
+            </div>
+            <div id="Content-Radar">
+                <div class="view-title am-panel am-panel-primary">
+                    <div class="am-panel-hd">Radar-Violin View</div>
+                </div>
+                <!-- <div class='legendLabel' style="background: #00A0B0;">mean</div>
+                <div class='legendLabel' style="background: #EDC951;">ID</div> -->
+                <div id="radarChart" class="view-vis"></div>
+                <div id='radarLegend' class='radarLegend'></div>
+            </div>
+            <!-- <div id="Content-Level2Glyph"></div> -->
+
+
+        </div>
+        <div id="Content-VIEWS-DOWN">
+            <div id="Content-Scatter">
+                <div class="view-title am-panel am-panel-primary">
+                    <div class="am-panel-hd">Projection View</div>
+                </div>
+                <!-- <div id="Heatmap-TIMLELINE" style="width:100%;height:10%"></div>  -->
+                <div id="scatter" class="view-vis"></div>
+            </div>
+
+            <div id="Content-Line">
+                <div class="view-title am-panel am-panel-primary">
+                    <div class="am-panel-hd">Line-step View</div>
+                </div>
+                <!-- <div id="Heatmap-TIMLELINE" style="width:100%;height:10%"></div>  -->
+                <div id="line" class="view-vis"></div>
+            </div>
+
+            <div id="Content-Parallel">
+                <div class="view-title am-panel am-panel-primary">
+                    <div class="am-panel-hd">Selection View
+                        <!-- <span id="views-undo" class="am-icon-undo am-icon-sm am-primary"></span> -->
+                    </div>
+                </div>
+                <!-- <div id="PATTERN-lasso"></div> -->
+                <div id="parallel-chart" class="view-vis"></div>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+<script type="text/javascript" src="js/overview.js"></script>
+<script type="text/javascript" src="js/parallel.js"></script>
+
+<script type="text/javascript" src="js/radar.js"></script>
+<script type="text/javascript" src="js/radarChart.js"></script>
+<script type="text/javascript" src="js/distrochart.js"></script>
+<script type="text/javascript" src="js/scatter.js"></script>
+
+<!-- <script type="text/javascript" charset="utf-8" src="js/outlierTrend(61).js"></script> -->
+<script type="text/javascript" charset="utf-8" src="js/outlierTrendSort.js"></script>
+<script>
+    $(function() {
+        //ajax提交
+        $("#ajaxBtn").click(function() {
+            var algorithmParams = $("#myform").serializeArray();
+            // console.log(algorithmParams)
+            // parallel(algorithmParams);
+            var algorithmList = [];
+            var algorithmSelectType;
+            for (var i = 0; i < algorithmParams.length; i++) {
+                if (algorithmParams[i].name == 'algorithm') {
+                    algorithmList.push(algorithmParams[i].value);
+                } else if (algorithmParams[i].name == 'algorithm_selectType') {
+                    algorithmSelectType = algorithmParams[i].value;
+                }
+            }
+            // console.log(algorithmList, algorithmSelectType);
+            parallel(algorithmList, algorithmSelectType);
+        })
+
+
+        $("#ajaxBtn1").click(function() {
+            var radarParams = $("#myform1").serializeArray();
+            var radarId;
+            var radarMonth;
+            // console.log(algorithmParams)
+            // parallel(algorithmParams);
+            // var algorithmList = [];
+            // var algorithmSelectType;
+            for (var i = 0; i < radarParams.length; i++) {
+                if (radarParams[i].name == 'radar_id') {
+                    radarId = radarParams[i].value;
+                } else if (radarParams[i].name == 'radar_month') {
+                    radarMonth = radarParams[i].value;
+                }
+            }
+            // console.log(algorithmParams);
+            if (radarMonth != 'null') {
+                radar(radarId, radarMonth);
+            }
+
+            outlierTrend(radarId)
+        })
+
+
+
+
+    })
+</script>
+</body>
+
+</html>

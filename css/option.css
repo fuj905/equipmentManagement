@@ -1,0 +1,125 @@
+.BLOCK-Title {
+    font: bold 18px "sans-serif";
+    /* text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff; */
+    fill: #ABB4BF;
+    height: 30px;
+    padding: 10px 0 4px 95px;
+}
+
+.Option-section {
+    background-color: #1D2127;
+    width: 90%;
+    margin-left: 0%;
+    margin-bottom: 20px;
+    padding: 10px 0px 0px 10px;
+}
+
+.option-section-title {
+    font: 15px "sans-serif";
+    padding: 4px 0 4px 1px;
+    margin-bottom: 15px;
+}
+
+.title-icon {
+    font: normal 15px "iconfont" !important;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.am-selected-list {
+    color: #000;
+}
+
+.sub-submit {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 25%;
+}
+
+.sub-text {
+    margin-left: 5%;
+    font: normal 12px "sans-serif";
+    color: #ACB5BF;
+}
+
+.option-select {
+    margin-bottom: 5%;
+    margin-left: 15%;
+}
+
+.am-radio {
+    margin-bottom: 5%;
+    margin-left: 15%;
+}
+
+.option-select-options {
+    width: 60%;
+    float: right;
+    margin-right: 15%;
+}
+
+.option-select-options-dataset {
+    width: 60%;
+    float: right;
+    margin-right: 12%;
+    margin-bottom: 10px;
+}
+
+.option-input {
+    width: 20%;
+    float: right;
+    margin-right: 20%;
+}
+
+.am-switch {
+    height: 25px;
+    float: right;
+    font: normal 12px "sans-serif";
+    margin-right: 20%;
+}
+
+.am-form-group-dataset {
+    width: 50%;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.am-panel-primary {
+    border-color: #1D2127;
+    height: 25px;
+    margin-bottom: 0px;
+}
+
+.am-panel-primary>.am-panel-hd {
+    background-color: #1D2127;
+    border-color: #1D2127;
+    height: 25px;
+    font-size: 15px;
+    padding: 0px 20px 20px 20px;
+}
+
+#views-undo {
+    float: right;
+}
+
+.tooltip {
+    font-family: simsun;
+    font-size: 16px;
+    width: 120;
+    height: auto;
+    position: absolute;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    background-color: red;
+    border-radius: 5px;
+    color: #000;
+}
+
+
+/* .option-section-title {
+    font: bold 15px "sans-serif";
+    padding: 4px 0 4px 15px;
+    margin-bottom: 15px;
+} */
